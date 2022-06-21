@@ -13,45 +13,51 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+      body: SafeArea(
+        child: Expanded(
+          child: ListView(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
+                  const SizedBox(
+                    height: 48.0,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      //Do something with the user input.
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: "Enter Your Email"),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      //Do something with the user input.
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: "Enter your Password"),
+                  ),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  NavigationButton(
+                    buttonColor: Colors.lightBlueAccent,
+                    buttonLabel: "Log In",
+                    onPress: () {},
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 48.0,
-            ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration:
-                  kTextFieldDecoration.copyWith(hintText: "Enter Your Email"),
-            ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldDecoration.copyWith(
-                  hintText: "Enter your Password"),
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            NavigationButton(
-              buttonColor: Colors.lightBlueAccent,
-              buttonLabel: "Log In",
-              onPress: () {},
-            ),
-          ],
+          ]),
         ),
       ),
     );
