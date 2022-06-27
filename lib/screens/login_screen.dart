@@ -3,6 +3,8 @@ import 'package:flash_chat/Components/navigation_button.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -70,8 +72,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         if(user != null){
                           print("LoggedIn User: $user");
                           Navigator.pushNamed(context, ChatScreen.id);
+                          var snackBar = SnackBar(
+                            elevation: 0,
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Colors.transparent,
+                            content: AwesomeSnackbarContent(
+                              title: 'Success!',
+                              message:
+                              'Welcome ${_auth.currentUser.email}!',
+                              contentType: ContentType.success,
+                            ),
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       }catch(e){
+                        var snackBar = SnackBar(
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'Failed!',
+                            message:
+                            e.message,
+                            contentType: ContentType.failure,
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         print(e);
                       }
                     },

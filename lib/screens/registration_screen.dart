@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flash_chat/Components/navigation_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/constants.dart';
@@ -72,9 +73,35 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         if (userCredential != null) {
                           print("Current User: $userCredential");
                           Navigator.pushNamed(context, ChatScreen.id);
+                          var snackBar = SnackBar(
+                            elevation: 0,
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Colors.transparent,
+                            content: AwesomeSnackbarContent(
+                              title: 'Success!',
+                              message:
+                              'Welcome ${_auth.currentUser.email}!',
+                              contentType: ContentType.success,
+                            ),
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       } catch (e) {
                         print(e);
+                        var snackBar = SnackBar(
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'Failed!',
+                            message:
+                            e.message,
+                            contentType: ContentType.failure,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                     }),
               ],
